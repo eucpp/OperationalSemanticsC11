@@ -60,7 +60,7 @@
 #|
 (define-metafunction coreLang
   updateStateF : θ (θ -> θ) auxξ -> auxξ
-  [(updateStateF θ_old f (θ_0 ... θ_old θ_1 ...)) (θ_0 ... (f θ_old) θ_1 ...)])
+  [(updateStateF θ_old f (θ_0 ... θ_old θ_1 ...)) (θ_0 ... (f θ_old) θ_1...)])
 |#
 
 (define-metafunction coreLang

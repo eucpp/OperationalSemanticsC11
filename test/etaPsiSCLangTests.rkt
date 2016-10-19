@@ -1,5 +1,5 @@
 #lang racket
-(require redex/reduction-semantics)
+(require redex)
 (require "../core/syntax.rkt")
 (require "../core/coreLang.rkt")
 (require "../core/coreUtils.rkt")
@@ -8,12 +8,14 @@
 (require "../rules/scRules.rkt")
 (require "testTerms.rkt")
 (require "../core/langs.rkt")
+(require "../core/pp.rkt")
 
-(define-term defaultState (() (Read ()) (NA ()) (SC ())))
+
+(define-term defaultState (() (Read ()) (Write ()) (AcqFront ()) (RelFront ()) (NA ()) (SC ())))
 
 (define coreStep
   (extend-reduction-relation
-   (define-coreStep defaultState spwST-readψ joinST-readψ isReadQueueEqualTo_t)
+   (define-coreStep defaultState spwST-2ψ joinST-2ψ isReadQueueEqualTo_t)
    etaPsiSCLang #:domain ξ))
 (define coreTest (define-coreTest coreStep defaultState))
 
@@ -126,3 +128,4 @@ r1 = 0, r2 = 0 - is not allowed
          (term ((ret (1 0)) defaultState))
          (term ((ret (1 1)) defaultState)))
 
+;(stepper step (term (,testSB+fences+sc defaultState)) pretty-printer)
